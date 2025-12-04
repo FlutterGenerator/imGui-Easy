@@ -30,7 +30,7 @@
 #include "bools.h"
 #include "hooks.h"
 int  glWidth, glHeight;
-#include "EspManager.h"
+#include "ESPManager.h"
 ESPManager *espManager;
 #include "DrawMenu.h"
 
