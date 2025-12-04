@@ -35,9 +35,6 @@ ESPManager *espManager;
 #include "DrawMenu.h"
 
 
-
-
-
 #define Hook(offset,newptr,oldptr) MSHookFunction((void*)getAbsoluteAddress("libil2cpp.so",offset),(void*)newptr,(void**)&oldptr)
 using namespace BNM;
 
@@ -76,14 +73,10 @@ HOOK(void, Input, void *thiz, void *ex_ab, void *ex_ac){
 }
 
 
-
 ///PATCHIMG///
 struct Patches{
 MemoryPatch x;
 }hexPatches;
-
-
-
 
 
 void *enemyPlayer = NULL;
@@ -99,7 +92,7 @@ void _PlayerUpdate(void *player)
    }
 old_PlayerUpdate(player);
 }
- 
+
 
 //Add Bool Name In bool.h Such Test
 
@@ -112,20 +105,6 @@ int Example(void *player) {
     }
     return old_example(player);  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 void SetupImgui() {
@@ -147,8 +126,6 @@ void SetupImgui() {
 }
 
 bool clearMousePos = true, setup = false;
-
-
 
 
 EGLBoolean (*old_eglSwapBuffers)(EGLDisplay dpy, EGLSurface surface);
@@ -181,9 +158,6 @@ EGLBoolean hook_eglSwapBuffers(EGLDisplay dpy, EGLSurface surface) {
 }
 
 
-
-
-
 void *imgui_go(void *) {
     sleep(2);
     espManager = new ESPManager();
@@ -193,19 +167,16 @@ void *imgui_go(void *) {
     DobbyHook((void *)addr, (void *)hook_eglSwapBuffers, (void **)&old_eglSwapBuffers);
 
     
-    MSHookFunction((void *)getAbsoluteAddress("libil2cpp.so", 0x45FDE8), (void *) _PlayerUpdate, (void **) &old_PlayerUpdate); 
+    MSHookFunction((void *)getAbsoluteAddress("libil2cpp.so", 0x45FDE8), (void *) _PlayerUpdate, (void **) &old_PlayerUpdate);
 
 
-
-
-DobbyHook((void *)getAbsoluteAddress("libil2cpp.so", 0x45FDE8), (void *) Example, (void **) &old_example); 
+DobbyHook((void *)getAbsoluteAddress("libil2cpp.so", 0x45FDE8), (void *) Example, (void **) &old_example);
 
 //And If You Want Add Toggle Then Go To The DrawMenu.h
-//Use Dobbyhook For Hooking 
+//Use Dobbyhook For Hooking
    
     pthread_exit(nullptr);
     return nullptr;
-
 
 }
 
