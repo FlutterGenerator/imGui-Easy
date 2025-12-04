@@ -53,7 +53,7 @@ auto HOOK = [](auto ptr, auto newMethod, auto&& oldBytes) {
 */
 //! DobbyHook
 //!!!!!!!! Recommended !!!!!!!!
-#include "includes/Dobby/dobby.h"
+#include "Includes/Dobby/dobby.h"
 auto HOOK = [](auto ptr, auto newMethod, auto&& oldBytes) {
     if (ptr != 0){
         DobbyHook((void *)ptr, (void *) newMethod, (void **) &oldBytes);
