@@ -1,10 +1,13 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
     compileSdkVersion 30
+    namespace "com.android.support"
     defaultConfig {
         applicationId "com.android.support"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "2.9"
@@ -30,7 +33,6 @@ android {
             path file('src/main/jni/Android.mk')
         }
     }
-    ndkVersion = '22.0.7026061'
 }
 
 //dependencies must be placed below 'android' brackets to get it work on AIDE
